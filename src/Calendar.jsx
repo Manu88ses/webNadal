@@ -4,16 +4,46 @@ import "./index.css";
 const Calendar = () => {
   const today = new Date().getDate(); // día actual
   const [openedDays, setOpenedDays] = useState([]);
+  const [message, setMessage] = useState(""); // mensaje que se mostrará
 
+  // Contenido de cada día
+  const dayContents = {
+    1: "Feliz Día 1 🎁",
+  2: "Día 2: ¡Sorpresa!",
+  3: "Día 3: Chocolate 🍫",
+  4: "Día 4: Dulces 🍬",
+  5: "Día 5: Una frase divertida 😄",
+  6: "Día 6: Regalo sorpresa 🎉",
+  7: "Día 7: ¡Feliz Navidad anticipada! 🎄",
+  8: "Día 8: Abrazo virtual 🤗",
+  9: "Día 9: Dulce navideño 🍭",
+  10: "Día 10: Sonríe hoy 😁",
+  11: "Día 11: ¡Tiempo de villancicos! 🎶",
+  12: "Día 12: Chocolate caliente ☕",
+  13: "Día 13: Una tarjeta para ti ✉️",
+  14: "Día 14: Confeti y alegría 🎊",
+  15: "Día 15: Momento de paz 🕯️",
+  16: "Día 16: Una broma navideña 🤪",
+  17: "Día 17: Copos de nieve ❄️",
+  18: "Día 18: Galletas de jengibre 🍪",
+  19: "Día 19: Risas y abrazos 😄",
+  20: "Día 20: Una sorpresa dulce 🍫",
+  21: "Día 21: Espíritu navideño 🎅",
+  22: "Día 22: Música festiva 🎵",
+  23: "Día 23: Últimos preparativos 🎁",
+  24: "¡Feliz Nochebuena! 🌟"
+  };
 
   const handleOpen = (day) => {
     if (day > today) return; // bloquear días futuros
     if (!openedDays.includes(day)) {
       setOpenedDays([...openedDays, day]);
+      setMessage(dayContents[day] || "¡Sorpresa!");
+    } else {
+      setMessage(dayContents[day] || "¡Sorpresa!");
     }
   };
 
-  // Función que devuelve el contenido del botón
   const getButtonContent = (day) => {
     if (day > today) return "🔒"; // días futuros
     return (
@@ -28,33 +58,22 @@ const Calendar = () => {
     <div>
       <h1>Calendari d'advent</h1>
       <div className="card">
-        <button className="dies" onClick={() => handleOpen(1)}>{getButtonContent(1)}</button>
-        <button className="dies" onClick={() => handleOpen(2)}>{getButtonContent(2)}</button>
-        <button className="dies" onClick={() => handleOpen(3)}>{getButtonContent(3)}</button>
-        <button className="dies" onClick={() => handleOpen(4)}>{getButtonContent(4)}</button>
-        <button className="dies" onClick={() => handleOpen(5)}>{getButtonContent(5)}</button>
-        <button className="dies" onClick={() => handleOpen(6)}>{getButtonContent(6)}</button>
-        <button className="dies" onClick={() => handleOpen(7)}>{getButtonContent(7)}</button>
-        <button className="dies" onClick={() => handleOpen(8)}>{getButtonContent(8)}</button>
-        <button className="dies" onClick={() => handleOpen(9)}>{getButtonContent(9)}</button>
-        <button className="dies" onClick={() => handleOpen(10)}>{getButtonContent(10)}</button>
-        <button className="dies" onClick={() => handleOpen(11)}>{getButtonContent(11)}</button>
-        <button className="dies" onClick={() => handleOpen(12)}>{getButtonContent(12)}</button>
-        <button className="dies" onClick={() => handleOpen(13)}>{getButtonContent(13)}</button>
-        <button className="dies" onClick={() => handleOpen(14)}>{getButtonContent(14)}</button>
-        <button className="dies" onClick={() => handleOpen(15)}>{getButtonContent(15)}</button>
-        <button className="dies" onClick={() => handleOpen(16)}>{getButtonContent(16)}</button>
-        <button className="dies" onClick={() => handleOpen(17)}>{getButtonContent(17)}</button>
-        <button className="dies" onClick={() => handleOpen(18)}>{getButtonContent(18)}</button>
-        <button className="dies" onClick={() => handleOpen(19)}>{getButtonContent(19)}</button>
-        <button className="dies" onClick={() => handleOpen(20)}>{getButtonContent(20)}</button>
-        <button className="dies" onClick={() => handleOpen(21)}>{getButtonContent(21)}</button>
-        <button className="dies" onClick={() => handleOpen(22)}>{getButtonContent(22)}</button>
-        <button className="dies" onClick={() => handleOpen(23)}>{getButtonContent(23)}</button>
-        <button className="dies" onClick={() => handleOpen(24)}>{getButtonContent(24)}</button>
+        {Array.from({ length: 24 }, (_, i) => {
+          const day = i + 1;
+          return (
+            <button key={day} className="dies" onClick={() => handleOpen(day)}>
+              {getButtonContent(day)}
+            </button>
+          );
+        })}
       </div>
-      
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/035/566/895/small/red-gift-box-and-gold-ribbon-chinese-new-year-elements-icon-3d-rendering-png.png"></img>
+
+      {/* Aquí mostramos el mensaje en lugar del regalo */}
+      <div className="message">
+        {message ? <p>{message}</p> : (
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/035/566/895/small/red-gift-box-and-gold-ribbon-chinese-new-year-elements-icon-3d-rendering-png.png" alt="Regalo"/>
+        )}
+      </div>
     </div>
   );
 };
