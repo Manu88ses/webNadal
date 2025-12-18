@@ -53,9 +53,7 @@ const Calendar = () => {
         <button className="dies" onClick={() => handleOpen(23)}>{getButtonContent(23)}</button>
         <button className="dies" onClick={() => handleOpen(24)}>{getButtonContent(24)}</button>
       </div>
-      if () {
-        
-      }
+      
       <img src="https://static.vecteezy.com/system/resources/thumbnails/035/566/895/small/red-gift-box-and-gold-ribbon-chinese-new-year-elements-icon-3d-rendering-png.png"></img>
     </div>
   );

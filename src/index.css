@@ -1,68 +1,80 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* index.css */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
 }
 
 body {
-  margin: 0;
+  background: #d63447; /* Fondo rojo navideño */
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center;
+  align-items: flex-start;
   min-height: 100vh;
+  padding: 20px;
 }
 
+/* Título */
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff; /* Blanco sobre fondo rojo */
+  font-size: 2rem;
+  text-shadow: 1px 1px 3px #800000; /* sombra más oscura */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+/* Contenedor de botones */
+.card {
+  display: grid;
+  grid-template-columns: repeat(6, 60px); /* 6 columnas */
+  grid-gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Botones de días */
+.dies {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #fff; /* borde blanco para contrastar */
+  border-radius: 10px;
+  background-color: #fff;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-size: 1.2rem;
+  color: #d63447; /* texto rojo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.dies:hover {
+  background-color: #ffe6e6; /* un rojo muy claro al pasar el mouse */
+  transform: scale(1.1);
+}
+
+/* Check dentro del botón */
+.check {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-size: 0.9rem;
+  color: green;
+}
+
+/* Imagen de regalo */
+img {
+  display: block;
+  margin: 20px auto;
+  width: 150px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.1);
 }
