@@ -6,6 +6,7 @@ const Calendar = () => {
   const today = new Date().getDate();
   const [openedDays, setOpenedDays] = useState([]);
   const [message, setMessage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpen = (day) => {
     if (day > today) return;
@@ -17,6 +18,12 @@ const Calendar = () => {
     }
 
     setMessage(content);
+    setIsModalOpen(true);  // Abrimos el modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);  // Cerramos el modal
+    setMessage(null);  // Limpiamos el mensaje cuando se cierra
   };
 
   const getButtonContent = (day) => {
@@ -45,21 +52,26 @@ const Calendar = () => {
         })}
       </div>
 
-      <div className="message">
-        {message ? (
-          <div>
-            <h2>{message.title}</h2>
-            <img src={message.url} alt={message.title} />
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-button" onClick={closeModal}>❌</button>
+            {message ? (
+              <div>
+                <h2>{message.title}</h2>
+                <img src={message.url} alt={message.title} />
+              </div>
+            ) : (
+              <img
+                src="https://static.vecteezy.com/system/resources/thumbnails/035/566/895/small/red-gift-box-and-gold-ribbon-chinese-new-year-elements-icon-3d-rendering-png.png"
+                alt="Regalo"
+              />
+            )}
           </div>
-        ) : (
-          <img
-            src="https://static.vecteezy.com/system/resources/thumbnails/035/566/895/small/red-gift-box-and-gold-ribbon-chinese-new-year-elements-icon-3d-rendering-png.png"
-            alt="Regalo"
-          />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
-
 export default Calendar;
