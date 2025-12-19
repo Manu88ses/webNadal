@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import "./index.css";
 
 const Calendar = () => {
-  const today = new Date().getDate(); // día actual
+  const today = new Date().getDate();
   const [openedDays, setOpenedDays] = useState([]);
-  const [message, setMessage] = useState(""); // mensaje que se mostrará
+  const [message, setMessage] = useState(""); 
 
-  // Contenido de cada día
   const dayContents = {
     1: "Feliz Día 1 🎁",
   2: "Día 2: ¡Sorpresa!",
@@ -31,11 +30,11 @@ const Calendar = () => {
   21: "Día 21: Espíritu navideño 🎅",
   22: "Día 22: Música festiva 🎵",
   23: "Día 23: Últimos preparativos 🎁",
-  24: "¡Feliz Nochebuena! 🌟"
+  24: "SAHISDHIJSJK"
   };
 
   const handleOpen = (day) => {
-    if (day > today) return; // bloquear días futuros
+    if (day > today) return; 
     if (!openedDays.includes(day)) {
       setOpenedDays([...openedDays, day]);
       setMessage(dayContents[day] || "¡Sorpresa!");
@@ -45,7 +44,7 @@ const Calendar = () => {
   };
 
   const getButtonContent = (day) => {
-    if (day > today) return "🔒"; // días futuros
+    if (day > today) return "🔒";
     return (
       <>
         {day}
@@ -68,7 +67,7 @@ const Calendar = () => {
         })}
       </div>
 
-      {/* Aquí mostramos el mensaje en lugar del regalo */}
+      
       <div className="message">
         {message ? <p>{message}</p> : (
           <img src="https://static.vecteezy.com/system/resources/thumbnails/035/566/895/small/red-gift-box-and-gold-ribbon-chinese-new-year-elements-icon-3d-rendering-png.png" alt="Regalo"/>
